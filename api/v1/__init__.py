@@ -14,8 +14,14 @@ authorizations = {
 
 api = Api(v1_blueprint,
           doc='/docs',
-          title='Test for evaluating API development (SKY).',
+          title='Test to evaluate the development of an API (SKY).',
           version='1.0',
-          description='Test for evaluating API development (SKY).',
+          description='Test to evaluate the development of an API (SKY).',
           security='Bearer Auth',
           authorizations=authorizations)
+
+
+from .resources.hello.hello import api as hello_ns
+
+
+api.add_namespace(hello_ns)
