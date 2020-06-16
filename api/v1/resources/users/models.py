@@ -86,7 +86,6 @@ class Users:
                 "iduser": user_json.get('iduser'),
                 "nome": user_json.get('nome'),
                 "email": user_json.get('email'),
-                "senha": user_json.get('senha'),
                 "telefone": user_json.get('telefone'),
                 "data_criacao": str(user_json.get('data_criacao')),
                 "data_atualizacao": str(user_json.get('data_atualizacao')),
