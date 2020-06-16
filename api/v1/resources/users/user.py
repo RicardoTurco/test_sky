@@ -118,5 +118,5 @@ class UserSignUp(Resource):
         if user:
             api.abort(409, 'E-mail já existente')
 
-        Users.insert_user(api.payload)
-        return {"mensagem": "User created"}, 201
+        user_ins = Users.insert_user(api.payload)
+        return user_ins, 201

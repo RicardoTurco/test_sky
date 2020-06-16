@@ -1,6 +1,6 @@
 import uuid
 import datetime
-from flask import current_app
+from flask import current_app, jsonify
 from api.helpers import encrypt_password
 
 
@@ -77,6 +77,23 @@ class Users:
                 "ultimo_login": user.get('ultimo_login')
             }
             users_ref.document(user_json['iduser']).set(user_json)
+
+            user_json['data_criacao'] = datetime.datetime.date(user_json['data_criacao'])
+            user_json['data_atualizacao'] = datetime.datetime.date(user_json['data_atualizacao'])
+            user_json['ultimo_login'] = datetime.datetime.date(user_json['ultimo_login'])
+
+            user_ins_json = {
+                "iduser": user_json.get('iduser'),
+                "nome": user_json.get('nome'),
+                "email": user_json.get('email'),
+                "senha": user_json.get('senha'),
+                "telefone": user_json.get('telefone'),
+                "data_criacao": str(user_json.get('data_criacao')),
+                "data_atualizacao": str(user_json.get('data_atualizacao')),
+                "ultimo_login": str(user_json.get('ultimo_login'))
+            }
+
+            return user_ins_json
         except Exception as e:
             return f"An Error Ocurred: {e}"
 
