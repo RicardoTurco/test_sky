@@ -12,7 +12,6 @@ def set_users():
 
 
 def date_in(date):
-    # date_str = date + ' 00:00:00'
     date_str = str(date) + ' 00:00:00'
     date_f = datetime.datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S')
     return date_f
@@ -78,6 +77,24 @@ class Users:
                 "ultimo_login": user.get('ultimo_login')
             }
             users_ref.document(user_json['iduser']).set(user_json)
+        except Exception as e:
+            return f"An Error Ocurred: {e}"
+
+    @staticmethod
+    def update_user(id, user):
+        users_ref = set_users()
+
+        try:
+            user['data_atualizacao'] = date_in(datetime.datetime.now().date())
+
+            user_json = {
+                "iduser": id,
+                "nome": user.get('nome'),
+                "email": user.get('email'),
+                "telefone": user.get('telefone'),
+                "data_atualizacao": user.get('data_atualizacao')
+            }
+            users_ref.document(user_json['iduser']).set(user_json, merge=True)
         except Exception as e:
             return f"An Error Ocurred: {e}"
 

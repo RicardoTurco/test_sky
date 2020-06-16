@@ -57,6 +57,26 @@ class UserId(Resource):
         Users.delete_user(id)
         return {"mensagem": "User deleted."}, 200
 
+    @api.expect(user)
+    @api.doc(responses={
+        200: 'OK',
+        400: 'Input payload validation failed',
+        401: 'Unauthorized',
+        404: 'User not found',
+        422: 'No user updated',
+        500: 'Internal Server Error'
+    }, params={'id': 'User ID'})
+    def put(self, id):
+        """
+        Updates the user
+        """
+        user = Users.get_user_id(id)
+        if not user:
+            api.abort(404, 'User not found')
+
+        Users.update_user(id, api.payload)
+        return {"mensagem": "User Updated."}, 200
+
 
 @api.route('/email/<string:email>')
 class UserEmail(Resource):
