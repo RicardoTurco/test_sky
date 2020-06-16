@@ -40,6 +40,23 @@ class UserId(Resource):
             api.abort(404, 'User not found')
         return user, 200
 
+    @api.doc(responses={
+        200: 'OK',
+        401: 'Unauthorized',
+        404: 'User not found',
+        500: 'Internal Server Error'
+    }, params={'id': 'User ID'})
+    def delete(self, id):
+        """
+        Delete User by ID
+        """
+        user = Users.get_user_id(id)
+        if not user:
+            api.abort(404, 'User not found')
+
+        Users.delete_user(id)
+        return {"mensagem": "User deleted."}, 200
+
 
 @api.route('/email/<string:email>')
 class UserEmail(Resource):

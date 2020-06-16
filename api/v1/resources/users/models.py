@@ -67,3 +67,9 @@ class Users:
             users_ref.document(user_json['iduser']).set(user_json)
         except Exception as e:
             return f"An Error Ocurred: {e}"
+
+    @staticmethod
+    def delete_user(id):
+        users_ref = set_users()
+
+        users_ref.document(id).delete()
