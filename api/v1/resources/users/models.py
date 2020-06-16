@@ -11,6 +11,13 @@ def set_users():
     return users_ref
 
 
+def date_in(date):
+    # date_str = date + ' 00:00:00'
+    date_str = str(date) + ' 00:00:00'
+    date_f = datetime.datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S')
+    return date_f
+
+
 class Users:
 
     def __init__(self):
@@ -56,13 +63,19 @@ class Users:
         try:
             user['iduser'] = str(uuid.uuid4())
             user['senha'] = encrypt_password(user.get('senha', 'changeme'))
+            user['data_criacao'] = date_in(datetime.datetime.now().date())
+            user['data_atualizacao'] = date_in(datetime.datetime.now().date())
+            user['ultimo_login'] = date_in(datetime.datetime.now().date())
 
             user_json = {
                 "iduser": user.get('iduser'),
                 "nome": user.get('nome'),
                 "email": user.get('email'),
                 "senha": user.get('senha'),
-                "telefone": user.get('telefone')
+                "telefone": user.get('telefone'),
+                "data_criacao": user.get('data_criacao'),
+                "data_atualizacao": user.get('data_atualizacao'),
+                "ultimo_login": user.get('ultimo_login')
             }
             users_ref.document(user_json['iduser']).set(user_json)
         except Exception as e:
