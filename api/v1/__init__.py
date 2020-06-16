@@ -22,6 +22,8 @@ api = Api(v1_blueprint,
 
 
 from .resources.hello.hello import api as hello_ns
+from .resources.users.user import api as user_ns
 
 
 api.add_namespace(hello_ns)
+api.add_namespace(user_ns)
