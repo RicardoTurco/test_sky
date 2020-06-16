@@ -15,6 +15,7 @@ distro==1.4.0
 firebase-admin==4.3.0
 Flask==1.1.2
 Flask-Cors==3.0.8
+Flask-JWT-Extended==3.24.1
 flask-restplus==0.13.0
 google-api-core==1.20.0
 google-api-python-client==1.9.3
@@ -44,6 +45,7 @@ protobuf==3.12.2
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20
+PyJWT==1.7.1
 pyparsing==2.4.6
 pyrsistent==0.16.0
 pytoml==0.1.21

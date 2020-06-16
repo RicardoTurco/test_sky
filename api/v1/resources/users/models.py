@@ -1,6 +1,7 @@
 import uuid
 import datetime
-from flask import current_app, jsonify
+from flask import current_app
+from flask_jwt_extended import create_access_token
 from api.helpers import encrypt_password
 
 
@@ -76,6 +77,10 @@ class Users:
                 "data_atualizacao": user.get('data_atualizacao'),
                 "ultimo_login": user.get('ultimo_login')
             }
+
+            access_token = create_access_token(identity=user_json)
+            user_json['access_token'] = access_token
+
             users_ref.document(user_json['iduser']).set(user_json)
 
             user_json['data_criacao'] = datetime.datetime.date(user_json['data_criacao'])
@@ -89,7 +94,8 @@ class Users:
                 "telefone": user_json.get('telefone'),
                 "data_criacao": str(user_json.get('data_criacao')),
                 "data_atualizacao": str(user_json.get('data_atualizacao')),
-                "ultimo_login": str(user_json.get('ultimo_login'))
+                "ultimo_login": str(user_json.get('ultimo_login')),
+                "access_token": user_json.get('access_token')
             }
 
             return user_ins_json

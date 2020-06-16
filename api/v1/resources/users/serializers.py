@@ -9,7 +9,8 @@ user = api.model('User', {
     'telefone': fields.String(readonly=True, description='Telefone of User'),
     'data_criacao': fields.Date(readonly=True, description='Dt.Criacao of User'),
     'data_atualizacao': fields.Date(readonly=True, description='Dt.Atualizacao of User'),
-    'ultimo_login': fields.Date(readonly=True, description='Dt.Ultimo Login of User')
+    'ultimo_login': fields.Date(readonly=True, description='Dt.Ultimo Login of User'),
+    'access_token': fields.String(readonly=True, description='Access_token of User')
 })
 
 create_user = api.model('User', {
