@@ -158,6 +158,9 @@ class UserSignIn(Resource):
         if not check_password(senha, user.get('senha')):
             api.abort(401, 'Unauthorized')
 
+        ultimo_login = Users.update_ultimo_login(user['iduser'])
+        user['ultimo_login'] = ultimo_login
+
         return user, 200
 
 

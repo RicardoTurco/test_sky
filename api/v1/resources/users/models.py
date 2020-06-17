@@ -143,3 +143,17 @@ class Users:
             users_ref.document(user_json['iduser']).set(user_json, merge=True)
         except Exception as e:
             return f"An Error Ocurred: {e}"
+
+    @staticmethod
+    def update_ultimo_login(iduser):
+        users_ref = set_users()
+
+        try:
+            user_json = {
+                "iduser": iduser,
+                "ultimo_login": date_in(datetime.datetime.now().date())
+            }
+            users_ref.document(user_json['iduser']).set(user_json, merge=True)
+            return user_json['ultimo_login']
+        except Exception as e:
+            return f"An Error Ocurred: {e}"
