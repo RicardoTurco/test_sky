@@ -140,7 +140,7 @@ class UserSignIn(Resource):
     @api.doc(responses={
         200: 'Success',
         400: 'Email or Senha is a required property',
-        401: 'Unauthorized',
+        401: 'Usuário e/ou senha inválidos.',
         404: 'Usuário e/ou senha inválidos.'
     }, security=None)
     def post(self):
@@ -156,7 +156,7 @@ class UserSignIn(Resource):
             api.abort(404, 'Usuário e/ou senha inválidos.')
 
         if not check_password(senha, user.get('senha')):
-            api.abort(401, 'Unauthorized')
+            api.abort(401, 'Usuário e/ou senha inválidos.')
 
         ultimo_login = Users.update_ultimo_login(user['iduser'])
         user['ultimo_login'] = ultimo_login
