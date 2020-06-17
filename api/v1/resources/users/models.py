@@ -78,11 +78,12 @@ class Users:
                 "ultimo_login": user.get('ultimo_login')
             }
 
-            access_token = create_access_token(identity=user_json)
+            expires = datetime.timedelta(days=1)
+            access_token = create_access_token(identity=user_json, expires_delta=expires)
             user_json['access_token'] = access_token
 
             # Will be used to retrieve the token when it has expired ...
-            refresh_token = create_refresh_token(identity=user_json)
+            refresh_token = create_refresh_token(identity=user_json, expires_delta=False)
             user_json['refresh_token'] = refresh_token
 
             users_ref.document(user_json['iduser']).set(user_json)

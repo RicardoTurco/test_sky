@@ -1,3 +1,4 @@
+import datetime
 from flask_restplus import Resource, Namespace
 from flask_jwt_extended import jwt_required, jwt_refresh_token_required, \
     get_jwt_identity, get_jwt_claims, create_access_token
@@ -175,6 +176,9 @@ class TokenRefresh(Resource):
         """
         claims = get_jwt_claims()
         claims['user'] = get_jwt_identity()
-        access_token = create_access_token(identity=claims)
+
+        expires = datetime.timedelta(days=1)
+        access_token = create_access_token(identity=claims, expires_delta=expires)
+
         Users.update_access_token(claims['user']['iduser'], access_token)
         return {'access_token': access_token}
