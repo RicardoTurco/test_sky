@@ -1,6 +1,10 @@
 from flask_restplus import Resource, Namespace
-from .serializers import user, create_user
+from flask_jwt_extended import jwt_required, jwt_refresh_token_required, \
+    get_jwt_identity, get_jwt_claims, create_access_token
+from .serializers import user, user_list, create_user, user_signin, update_user, acc_token
 from .models import Users
+
+from api.helpers import check_password, refresh_parser
 
 
 api = Namespace('users', 'Users Endpoint')
@@ -9,7 +13,8 @@ api = Namespace('users', 'Users Endpoint')
 @api.route('')
 class UserList(Resource):
 
-    @api.marshal_list_with(user)
+    @jwt_required
+    @api.marshal_list_with(user_list)
     @api.doc(responses={
         200: 'OK',
         401: 'Unauthorized',
@@ -24,6 +29,7 @@ class UserList(Resource):
 @api.route('/id/<string:id>')
 class UserId(Resource):
 
+    @jwt_required
     @api.marshal_with(user)
     @api.doc(responses={
         200: 'OK',
@@ -40,6 +46,7 @@ class UserId(Resource):
             api.abort(404, 'User not found')
         return user, 200
 
+    @jwt_required
     @api.doc(responses={
         200: 'OK',
         401: 'Unauthorized',
@@ -57,7 +64,8 @@ class UserId(Resource):
         Users.delete_user(id)
         return {"mensagem": "User deleted."}, 200
 
-    @api.expect(user)
+    @jwt_required
+    @api.expect(update_user)
     @api.doc(responses={
         200: 'OK',
         400: 'Input payload validation failed',
@@ -81,6 +89,7 @@ class UserId(Resource):
 @api.route('/email/<string:email>')
 class UserEmail(Resource):
 
+    @jwt_required
     @api.marshal_with(user)
     @api.doc(responses={
         200: 'OK',
@@ -120,3 +129,52 @@ class UserSignUp(Resource):
 
         user_ins = Users.insert_user(api.payload)
         return user_ins, 201
+
+
+@api.route('/sign-in')
+class UserSignIn(Resource):
+
+    @api.expect(user_signin)
+    @api.marshal_with(user)
+    @api.doc(responses={
+        200: 'Success',
+        400: 'Email or Senha is a required property',
+        401: 'Unauthorized',
+        404: 'Usuário e/ou senha inválidos.'
+    }, security=None)
+    def post(self):
+        """
+        Authentication endpoint
+        """
+        email = api.payload.get('email')
+        senha = api.payload.get('senha')
+
+        user = Users.get_user_email(email)
+
+        if not user:
+            api.abort(404, 'Usuário e/ou senha inválidos.')
+
+        if not check_password(senha, user.get('senha')):
+            api.abort(401, 'Unauthorized')
+
+        return user, 200
+
+
+@api.route('/refresh-token')
+class TokenRefresh(Resource):
+
+    @jwt_refresh_token_required
+    @api.expect(refresh_parser)
+    @api.doc(responses={
+        424: 'Invalid refresh token'
+    }, security=None)
+    @api.response(200, 'Sucess', acc_token)
+    def post(self):
+        """
+        Retrieve Access Token using Refresh Token
+        """
+        claims = get_jwt_claims()
+        claims['user'] = get_jwt_identity()
+        access_token = create_access_token(identity=claims)
+        Users.update_access_token(claims['user']['iduser'], access_token)
+        return {'access_token': access_token}

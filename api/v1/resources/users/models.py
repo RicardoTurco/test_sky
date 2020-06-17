@@ -1,7 +1,7 @@
 import uuid
 import datetime
 from flask import current_app
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, create_refresh_token
 from api.helpers import encrypt_password
 
 
@@ -81,6 +81,10 @@ class Users:
             access_token = create_access_token(identity=user_json)
             user_json['access_token'] = access_token
 
+            # Will be used to retrieve the token when it has expired ...
+            refresh_token = create_refresh_token(identity=user_json)
+            user_json['refresh_token'] = refresh_token
+
             users_ref.document(user_json['iduser']).set(user_json)
 
             user_json['data_criacao'] = datetime.datetime.date(user_json['data_criacao'])
@@ -125,3 +129,16 @@ class Users:
         users_ref = set_users()
 
         users_ref.document(id).delete()
+
+    @staticmethod
+    def update_access_token(iduser, access_token):
+        users_ref = set_users()
+
+        try:
+            user_json = {
+                "iduser": iduser,
+                "access_token": access_token
+            }
+            users_ref.document(user_json['iduser']).set(user_json, merge=True)
+        except Exception as e:
+            return f"An Error Ocurred: {e}"
