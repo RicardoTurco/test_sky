@@ -3,7 +3,7 @@ from flask_restplus import Resource, Namespace
 from flask_jwt_extended import jwt_required, jwt_refresh_token_required, \
     get_jwt_identity, get_jwt_claims, create_access_token
 from .serializers import user, user_list, create_user, user_signin, update_user, acc_token
-from .models import Users
+from .models import Users, invalid_session_user
 
 from api.helpers import check_password, refresh_parser
 
@@ -43,8 +43,13 @@ class UserId(Resource):
         Get User by ID
         """
         user = Users.get_user_id(id)
+
         if not user:
             api.abort(404, 'User not found')
+
+        if invalid_session_user(user['ultimo_login']):
+            api.abort(401, 'Sessão inválida')
+
         return user, 200
 
     @jwt_required

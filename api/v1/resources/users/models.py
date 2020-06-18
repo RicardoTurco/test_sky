@@ -18,6 +18,23 @@ def date_in(date):
     return date_f
 
 
+def invalid_session_user(ultimo_login):
+    """
+    The last access cannot have been more than 30 minutes ago ...
+    """
+    limit = datetime.datetime.now() - datetime.timedelta(minutes=30)
+
+    # Formatting dates ...
+    limita = datetime.datetime.strftime(limit, '%Y-%m-%d %H:%M')
+    limitb = datetime.datetime.strptime(limita, '%Y-%m-%d %H:%M')
+    ultimo_logina = datetime.datetime.strftime(ultimo_login, '%Y-%m-%d %H:%M')
+    ultimo_loginb = datetime.datetime.strptime(ultimo_logina, '%Y-%m-%d %H:%M')
+
+    if ultimo_loginb < limitb:
+        return True
+    return False
+
+
 class Users:
 
     def __init__(self):
