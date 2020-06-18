@@ -65,7 +65,7 @@ class Users:
             user['senha'] = encrypt_password(user.get('senha', 'changeme'))
             user['data_criacao'] = date_in(datetime.datetime.now().date())
             user['data_atualizacao'] = date_in(datetime.datetime.now().date())
-            user['ultimo_login'] = date_in(datetime.datetime.now().date())
+            user['ultimo_login'] = datetime.datetime.now()
 
             user_json = {
                 "iduser": user.get('iduser'),
@@ -90,7 +90,7 @@ class Users:
 
             user_json['data_criacao'] = datetime.datetime.date(user_json['data_criacao'])
             user_json['data_atualizacao'] = datetime.datetime.date(user_json['data_atualizacao'])
-            user_json['ultimo_login'] = datetime.datetime.date(user_json['ultimo_login'])
+            user_json['ultimo_login'] = user_json['ultimo_login']
 
             user_ins_json = {
                 "iduser": user_json.get('iduser'),
@@ -99,7 +99,7 @@ class Users:
                 "telefone": user_json.get('telefone'),
                 "data_criacao": str(user_json.get('data_criacao')),
                 "data_atualizacao": str(user_json.get('data_atualizacao')),
-                "ultimo_login": str(user_json.get('ultimo_login')),
+                "ultimo_login": datetime.datetime.strftime(user_json.get('ultimo_login'), '%Y-%m-%d %H:%M'),
                 "access_token": user_json.get('access_token')
             }
 
