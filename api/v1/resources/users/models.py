@@ -107,7 +107,6 @@ class Users:
 
             user_json['data_criacao'] = datetime.datetime.date(user_json['data_criacao'])
             user_json['data_atualizacao'] = datetime.datetime.date(user_json['data_atualizacao'])
-            user_json['ultimo_login'] = user_json['ultimo_login']
 
             user_ins_json = {
                 "iduser": user_json.get('iduser'),
@@ -168,7 +167,7 @@ class Users:
         try:
             user_json = {
                 "iduser": iduser,
-                "ultimo_login": date_in(datetime.datetime.now().date())
+                "ultimo_login": datetime.datetime.now()
             }
             users_ref.document(user_json['iduser']).set(user_json, merge=True)
             return user_json['ultimo_login']
