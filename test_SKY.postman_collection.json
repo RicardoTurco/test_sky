@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "725e3bc3-9c8e-4c33-ae41-6e4087856321",
+		"name": "test_SKY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Local",
+			"item": [
+				{
+					"name": "Hello",
+					"item": [
+						{
+							"name": "Hello",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/hello",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"hello"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Sign-Up (Create User)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"ricturco\",\n    \"email\": \"ricturco@gmail.com\",\n    \"senha\": \"senharicturco\",\n    \"telefone\": \"11999999999\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/users/sign-up",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"sign-up"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sign-In (login)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"ricturco@gmail.com\",\n    \"senha\": \"senharicturco\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/users/sign-in",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"sign-in"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Refresh Token",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTIzOTYyOTEsIm5iZiI6MTU5MjM5NjI5MSwianRpIjoiYzJhYmY3MzItZTk3NC00NDJkLThhYTAtZGRkZTE1MmFmM2YxIiwiZXhwIjoxNTk0OTg4MjkxLCJpZGVudGl0eSI6eyJpZHVzZXIiOiIwMTFiYmZjNy00Y2I4LTRmMWEtODRjZC00MjRjMzQ5NDA0ZDAiLCJub21lIjoicmljdHVyY28iLCJlbWFpbCI6InJpY3R1cmNvQGdtYWlsLmNvbSIsInNlbmhhIjoiJDJiJDEyJHNPbEg4UUQ3UW8uQ3dxNTh5ZnZ6MS5nVnZ4MFNjbi55bW82TUp0cmxSSXFsWW5zLzczcm1pIiwidGVsZWZvbmUiOiIxMTk5OTk5OTk5OSIsImRhdGFfY3JpYWNhbyI6IldlZCwgMTcgSnVuIDIwMjAgMDA6MDA6MDAgR01UIiwiZGF0YV9hdHVhbGl6YWNhbyI6IldlZCwgMTcgSnVuIDIwMjAgMDA6MDA6MDAgR01UIiwidWx0aW1vX2xvZ2luIjoiV2VkLCAxNyBKdW4gMjAyMCAwMDowMDowMCBHTVQiLCJhY2Nlc3NfdG9rZW4iOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuZXlKcFlYUWlPakUxT1RJek9UWXlPVEVzSW01aVppSTZNVFU1TWpNNU5qSTVNU3dpYW5ScElqb2lZV0V5WldZellqZ3RZV0ZpWmkwME5EUTVMV0psT1RJdFlUZGhNekEzTmpKak56WmhJaXdpWlhod0lqb3hOVGt5TXprM01Ua3hMQ0pwWkdWdWRHbDBlU0k2ZXlKcFpIVnpaWElpT2lJd01URmlZbVpqTnkwMFkySTRMVFJtTVdFdE9EUmpaQzAwTWpSak16UTVOREEwWkRBaUxDSnViMjFsSWpvaWNtbGpkSFZ5WTI4aUxDSmxiV0ZwYkNJNkluSnBZM1IxY21OdlFHZHRZV2xzTG1OdmJTSXNJbk5sYm1oaElqb2lKREppSkRFeUpITlBiRWc0VVVRM1VXOHVRM2R4TlRoNVpuWjZNUzVuVm5aNE1GTmpiaTU1Ylc4MlRVcDBjbXhTU1hGc1dXNXpMemN6Y20xcElpd2lkR1ZzWldadmJtVWlPaUl4TVRrNU9UazVPVGs1T1NJc0ltUmhkR0ZmWTNKcFlXTmhieUk2SWxkbFpDd2dNVGNnU25WdUlESXdNakFnTURBNk1EQTZNREFnUjAxVUlpd2laR0YwWVY5aGRIVmhiR2w2WVdOaGJ5STZJbGRsWkN3Z01UY2dTblZ1SURJd01qQWdNREE2TURBNk1EQWdSMDFVSWl3aWRXeDBhVzF2WDJ4dloybHVJam9pVjJWa0xDQXhOeUJLZFc0Z01qQXlNQ0F3TURvd01Eb3dNQ0JIVFZRaWZTd2labkpsYzJnaU9tWmhiSE5sTENKMGVYQmxJam9pWVdOalpYTnpJbjAuRUlhb1A5NTNKZUR2V1ZLaWdvREdtNUh1UVpXTXAtaEdRbU5vWDVOZTJEMCJ9LCJ0eXBlIjoicmVmcmVzaCJ9.QhupdTD5VvZd6iJDTpV5t0sZ_ReRqxSyd07sZEqEQRA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/users/refresh-token",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"refresh-token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all Users",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTI0Mjc4NjIsIm5iZiI6MTU5MjQyNzg2MiwianRpIjoiMjc3ZDEyNGUtMTEzNC00NzcwLTlkODktM2I2MmQ5ZWFiZmYyIiwiZXhwIjoxNTkyNTE0MjYyLCJpZGVudGl0eSI6eyJpZHVzZXIiOiJlMDdjOWI0OC1lYzIzLTQwODAtYWJhYS0wY2Y0ZWFlMGQwNzgiLCJub21lIjoicmljdHVyY28iLCJlbWFpbCI6InJpY3R1cmNvQGdtYWlsLmNvbSIsInNlbmhhIjoiJDJiJDEyJFZnNlZmTlAwakFaTmZLLkdvV3JWanVyZy5qcVFXNHhVYWYzVVFTSXluS0o4cTFjcVk5amd1IiwidGVsZWZvbmUiOiIxMTk5OTk5OTk5OSIsImRhdGFfY3JpYWNhbyI6IldlZCwgMTcgSnVuIDIwMjAgMDA6MDA6MDAgR01UIiwiZGF0YV9hdHVhbGl6YWNhbyI6IldlZCwgMTcgSnVuIDIwMjAgMDA6MDA6MDAgR01UIiwidWx0aW1vX2xvZ2luIjoiV2VkLCAxNyBKdW4gMjAyMCAwMDowMDowMCBHTVQifSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.rLuL9PKcMlfdAetoR65ZfltibaGmeskVr4iVhiSzvm8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/users",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTI0Mzk3MDEsIm5iZiI6MTU5MjQzOTcwMSwianRpIjoiNGQxMzQzZjgtNzBiNC00MDMyLTk3MzQtMmExYjcyYWI0ZDZjIiwiZXhwIjoxNTkyNTI2MTAxLCJpZGVudGl0eSI6eyJpZHVzZXIiOiJkMzUwNTk3YS0zMzAyLTQyMDYtYWNhNS05ZmI5YzNjMDE2MWEiLCJub21lIjoicmljdHVyY28iLCJlbWFpbCI6InJpY3R1cmNvQGdtYWlsLmNvbSIsInNlbmhhIjoiJDJiJDEyJGRubWZaLnF4SWZTZFU5MXNFSWNrMmVBVlpTLlAvT2dqWFppZS5KczhxRnc0c0hHdkRLT2dtIiwidGVsZWZvbmUiOiIxMTk5OTk5OTk5OSIsImRhdGFfY3JpYWNhbyI6IldlZCwgMTcgSnVuIDIwMjAgMDA6MDA6MDAgR01UIiwiZGF0YV9hdHVhbGl6YWNhbyI6IldlZCwgMTcgSnVuIDIwMjAgMDA6MDA6MDAgR01UIiwidWx0aW1vX2xvZ2luIjoiV2VkLCAxNyBKdW4gMjAyMCAyMToyMTo0MSBHTVQifSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.ua0dxhjBDAtYJPIPzKXNyPzLf5uoLLpGcFrJG37rSoY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/users/id/ab46b001-9e5b-44b7-9b3f-bdb4c58aa65e",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"id",
+										"ab46b001-9e5b-44b7-9b3f-bdb4c58aa65e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User by EMAIL",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTI0Mjc4NjIsIm5iZiI6MTU5MjQyNzg2MiwianRpIjoiMjc3ZDEyNGUtMTEzNC00NzcwLTlkODktM2I2MmQ5ZWFiZmYyIiwiZXhwIjoxNTkyNTE0MjYyLCJpZGVudGl0eSI6eyJpZHVzZXIiOiJlMDdjOWI0OC1lYzIzLTQwODAtYWJhYS0wY2Y0ZWFlMGQwNzgiLCJub21lIjoicmljdHVyY28iLCJlbWFpbCI6InJpY3R1cmNvQGdtYWlsLmNvbSIsInNlbmhhIjoiJDJiJDEyJFZnNlZmTlAwakFaTmZLLkdvV3JWanVyZy5qcVFXNHhVYWYzVVFTSXluS0o4cTFjcVk5amd1IiwidGVsZWZvbmUiOiIxMTk5OTk5OTk5OSIsImRhdGFfY3JpYWNhbyI6IldlZCwgMTcgSnVuIDIwMjAgMDA6MDA6MDAgR01UIiwiZGF0YV9hdHVhbGl6YWNhbyI6IldlZCwgMTcgSnVuIDIwMjAgMDA6MDA6MDAgR01UIiwidWx0aW1vX2xvZ2luIjoiV2VkLCAxNyBKdW4gMjAyMCAwMDowMDowMCBHTVQifSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.rLuL9PKcMlfdAetoR65ZfltibaGmeskVr4iVhiSzvm8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/users/email/ricturco@gmail.com",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"email",
+										"ricturco@gmail.com"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update  User",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTI0Mjc4NjIsIm5iZiI6MTU5MjQyNzg2MiwianRpIjoiMjc3ZDEyNGUtMTEzNC00NzcwLTlkODktM2I2MmQ5ZWFiZmYyIiwiZXhwIjoxNTkyNTE0MjYyLCJpZGVudGl0eSI6eyJpZHVzZXIiOiJlMDdjOWI0OC1lYzIzLTQwODAtYWJhYS0wY2Y0ZWFlMGQwNzgiLCJub21lIjoicmljdHVyY28iLCJlbWFpbCI6InJpY3R1cmNvQGdtYWlsLmNvbSIsInNlbmhhIjoiJDJiJDEyJFZnNlZmTlAwakFaTmZLLkdvV3JWanVyZy5qcVFXNHhVYWYzVVFTSXluS0o4cTFjcVk5amd1IiwidGVsZWZvbmUiOiIxMTk5OTk5OTk5OSIsImRhdGFfY3JpYWNhbyI6IldlZCwgMTcgSnVuIDIwMjAgMDA6MDA6MDAgR01UIiwiZGF0YV9hdHVhbGl6YWNhbyI6IldlZCwgMTcgSnVuIDIwMjAgMDA6MDA6MDAgR01UIiwidWx0aW1vX2xvZ2luIjoiV2VkLCAxNyBKdW4gMjAyMCAwMDowMDowMCBHTVQifSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.rLuL9PKcMlfdAetoR65ZfltibaGmeskVr4iVhiSzvm8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"ricturco2\",\n    \"email\": \"ricturco2@gmail.com\",\n    \"telefone\": \"11999999998\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/users/id/e07c9b48-ec23-4080-abaa-0cf4eae0d078",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"id",
+										"e07c9b48-ec23-4080-abaa-0cf4eae0d078"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/users/id/f9cd33e7-9b9f-4538-a2e1-c2f4cc409a3e",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"id",
+										"f9cd33e7-9b9f-4538-a2e1-c2f4cc409a3e"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
